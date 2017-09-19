@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh",
+    "test": "jest",
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-native": "^0.48.3",
+    "react-relay": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel-jest": "21.0.2",
+    "babel-plugin-relay": "^1.3.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "4.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "21.1.0",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
