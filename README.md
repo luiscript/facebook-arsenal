@@ -9,6 +9,8 @@ The goal with this project it's to figure it out what are the best practices for
 Work in progress, use it at your own risk.
 
 ---
+![alt tag](./demo/appDemo.gif)
+---
 
 ## How to run it
 
@@ -32,7 +34,7 @@ This example works out of the box, but if you change the GraphQL API you will ne
 
 ```bash
 $ npm i get-graphql-schema -g
-$ get-graphql-schema http://localhost:3001 > ./schema.graphql
+$ get-graphql-schema http://localhost:3001/graphql > ./schema.graphql
 $ npm i relay-compiler -g
 $ relay-compiler --src ./src --schema ./schema.graphql
 ```

@@ -69,14 +69,14 @@ const albums = [
     "id": 1,
     "artistId": 1,
     "title": "The King of Limbs",
-    "coverURl": "https://images-na.ssl-images-amazon.com/images/I/61feDXeBAdL.jpg",
+    "coverUrl": "https://images-na.ssl-images-amazon.com/images/I/61feDXeBAdL.jpg",
     "description": "\n\tThe King of Limbs is the eighth studio album by English rock band Radiohead, produced by Nigel Godrich. It was self-released on 18 February 2011 as a download in MP3 and WAV formats, followed by physical CD and 12\" vinyl releases on 28 March, a wider digital release via AWAL, and a special \"newspaper\" edition on 9 May 2011. The physical editions were released through the band's Ticker Tape imprint on XL in the United Kingdom, TBD in the United States, and Hostess Entertainment in Japan.\n      "
   },
   {
     "id": 2,
     "artistId": 1,
     "title": "OK Computer",
-    "coverURl": "https://images-na.ssl-images-amazon.com/images/I/51APT67z2lL.jpg",
+    "coverUrl": "https://images-na.ssl-images-amazon.com/images/I/51APT67z2lL.jpg",
     "description": "\n\tOK Computer is the third studio album by the English alternative rock band Radiohead, released on 16 June 1997 on Parlophone in the United Kingdom and 1 July 1997 by Capitol Records in the United States. It marks a deliberate attempt by the band to move away from the introspective guitar-oriented sound of their previous album The Bends. Its layered sound and wide range of influences set it apart from many of the Britpop and alternative rock bands popular at the time and laid the groundwork for Radiohead's later, more experimental work.\n      "
   },
   {

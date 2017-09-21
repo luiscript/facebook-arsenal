@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 95222e1e5df154e16899fa8c350b4e40
+ * @relayHash 31d29836d9b5356e47e2b11c28112086
  */
 
 /* eslint-disable */
@@ -9,21 +9,43 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type mainQueryResponse = {|
-  +artistsList: ?$ReadOnlyArray<?{|
-    +name: ?string;
-    +key: string;
-  |}>;
-|};
+export type mainQueryResponse = {| |};
 */
 
 
 /*
 query mainQuery {
-  artistsList {
-    name
-    key: id
-    id
+  ...artistFlatList
+}
+
+fragment artistFlatList on artistsList {
+  artistsList(last: 15) {
+    edges {
+      node {
+        key: id
+        name
+        albums {
+          edges {
+            node {
+              key: id
+              title
+              coverUrl
+              description
+              id
+            }
+          }
+        }
+        id
+        __typename
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
   }
 }
 */
@@ -36,32 +58,12 @@ const batch /*: ConcreteBatch*/ = {
     "name": "mainQuery",
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "args": null,
-        "concreteType": "ArtistType",
-        "name": "artistsList",
-        "plural": true,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "args": null,
-            "name": "name",
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": "key",
-            "args": null,
-            "name": "id",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+        "kind": "FragmentSpread",
+        "name": "artistFlatList",
+        "args": null
       }
     ],
-    "type": "ArtistList"
+    "type": "artistsList"
   },
   "id": null,
   "kind": "Batch",
@@ -76,38 +78,204 @@ const batch /*: ConcreteBatch*/ = {
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": null,
-        "concreteType": "ArtistType",
+        "args": [
+          {
+            "kind": "Literal",
+            "name": "last",
+            "value": 15,
+            "type": "Int"
+          }
+        ],
+        "concreteType": "ArtistTypeConnection",
         "name": "artistsList",
-        "plural": true,
+        "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
             "args": null,
-            "name": "name",
+            "concreteType": "ArtistTypeEdge",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "ArtistType",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": "key",
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "AlbumTypeConnection",
+                    "name": "albums",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "AlbumTypeEdge",
+                        "name": "edges",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "AlbumType",
+                            "name": "node",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "kind": "ScalarField",
+                                "alias": "key",
+                                "args": null,
+                                "name": "id",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "title",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "coverUrl",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "description",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "id",
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "__typename",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "cursor",
+                "storageKey": null
+              }
+            ],
             "storageKey": null
           },
           {
-            "kind": "ScalarField",
-            "alias": "key",
-            "args": null,
-            "name": "id",
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
             "args": null,
-            "name": "id",
+            "concreteType": "PageInfo",
+            "name": "pageInfo",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "endCursor",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "hasNextPage",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "hasPreviousPage",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "startCursor",
+                "storageKey": null
+              }
+            ],
             "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "artistsList{\"last\":15}"
+      },
+      {
+        "kind": "LinkedHandle",
+        "alias": null,
+        "args": [
+          {
+            "kind": "Literal",
+            "name": "last",
+            "value": 15,
+            "type": "Int"
+          }
+        ],
+        "handle": "connection",
+        "name": "artistsList",
+        "key": "artistFlatList_artistsList",
+        "filters": []
       }
     ]
   },
-  "text": "query mainQuery {\n  artistsList {\n    name\n    key: id\n    id\n  }\n}\n"
+  "text": "query mainQuery {\n  ...artistFlatList\n}\n\nfragment artistFlatList on artistsList {\n  artistsList(last: 15) {\n    edges {\n      node {\n        key: id\n        name\n        albums {\n          edges {\n            node {\n              key: id\n              title\n              coverUrl\n              description\n              id\n            }\n          }\n        }\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

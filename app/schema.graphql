@@ -1,5 +1,5 @@
 schema {
-  query: ArtistList
+  query: artistsList
 }
 
 # Returns an album
@@ -32,9 +32,9 @@ type AlbumTypeEdge {
 }
 
 # A collection of Artists.
-type ArtistList {
+type artistsList {
   # Returns a collection of artists
-  artistsList: [ArtistType]
+  artistsList(after: String, first: Int, before: String, last: Int): ArtistTypeConnection
 }
 
 # Returns artist info.
@@ -43,6 +43,24 @@ type ArtistType implements Node {
   id: ID!
   name: String
   albums(after: String, first: Int, before: String, last: Int): AlbumTypeConnection
+}
+
+# A connection to a list of items.
+type ArtistTypeConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [ArtistTypeEdge]
+}
+
+# An edge in a connection.
+type ArtistTypeEdge {
+  # The item at the end of the edge
+  node: ArtistType
+
+  # A cursor for use in pagination
+  cursor: String!
 }
 
 # An object with an ID
